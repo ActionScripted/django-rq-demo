@@ -1,0 +1,21 @@
+redis:
+  image: redis
+
+django:
+  build: .
+  command: ./compose/run_django.sh
+  ports:
+    - "8000:8000"
+  volumes:
+    - .:/django-rq
+  links:
+    - redis
+
+#rq:
+#  build: .
+#  command: ./compose/run_celery.sh
+#  volumes:
+#    - .:/britten-psq
+#  links:
+#    - rabbitmq
+#    - redis
