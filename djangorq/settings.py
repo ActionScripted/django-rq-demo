@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_rq',
+    'django_rq_dashboard',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -119,3 +121,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# RQ (Redis Queue)
+# http://python-rq.org/
+
+RQ_QUEUES = {
+    'default': {
+        'URL': os.getenv('REDIS_URL', 'redis://redis/0'),
+    }
+}
+
+RQ = {
+    'host': 'redis',
+    'db': 0,
+}
